@@ -71,7 +71,8 @@ form input[type="submit"] {
     gap: 20px;
     margin-bottom: 10px;
 }
-.btn{
+
+.btn {
     background-color: #1F604A;
     color: #fff;
 }
