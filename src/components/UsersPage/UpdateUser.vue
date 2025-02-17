@@ -1,57 +1,90 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 const name = ref('')
 const email = ref('')
 const status = ref('')
 const gender = ref('')
 
-const url = 'http://localhost:5000/users'
+const route = useRoute() 
+const id = route.params.id;
+const userInfo = ref({});
+const loading = ref(true)
 
-const handleSubmit = async () => {
-    // users data to store
-    const userInfo = {
+
+//getting single user data for default values;
+onMounted(async () => {
+    try {
+        const res = await fetch(`http://localhost:5000/users/${id}`)
+        const data = await res.json()
+        userInfo.value = data;
+        
+        //updating default value;
+        name.value = userInfo.value.name;
+        email.value = userInfo.value.email;
+        gender.value = userInfo.value.gender;
+        status.value = userInfo.value.status;
+
+        // loading false after getting data 
+        loading.value = false;
+    } catch (error) {
+        loading.value = false
+        console.log('error while fetching..', error);
+    }
+})
+
+//update user info handler
+const handleUpdateUser = async () => {
+    try {
+        //data to update
+        const updatedInfo = {
         name: name.value,
         email: email.value,
         status: status.value,
         gender: gender.value,
     }
 
-    // fetch api post method 
-    const response = await fetch(url, {
-        method: 'POST',
+    const response = await fetch(`http://localhost:5000/users/${id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userInfo)
+        body: JSON.stringify(updatedInfo)
     })
     const data = await response.json()
-    // console.log(data.acknowledged);
+    loading.value = false;
+    console.log(data);
     if (data?.acknowledged) {
-        alert('Data Inserted Successfully')
-    }
+        alert('Data Updated Successfully')
+    } 
 
+    } catch (error) {
+        loading.value = false;
+        console.log('error while updating data', error);
+    }
 }
 </script>
 
 <template>
     <section>
+        <!-- router link === anchor  -->
         <RouterLink to="/all-users">All Users</RouterLink>
         <div class="section-header">
-            <h2>New user</h2>
-            <p>Use the below form to create a new account</p>
+            <h2>Update info of: name</h2>
         </div>
 
-        <!-- add user form  -->
-        <form @submit.prevent="handleSubmit">
+        <!-- form  -->
+        <form @submit.prevent="handleUpdateUser">
             <div>
                 <label for="name">Name</label>
                 <input v-model="name" id="name" type="text" placeholder="Your Name">
             </div>
             <div>
                 <label for="email">Email</label>
-                <input v-model="email" id="email" type="text" placeholder="Your Email">
+                <input v-model="email" id="email" type="text" placeholder="Your Email" readonly>
             </div>
 
+            <!-- //gender radio btn  -->
             <div class="gender">
                 <label>Gender</label>
                 <div>
@@ -65,6 +98,7 @@ const handleSubmit = async () => {
                 </div>
             </div>
 
+            <!-- status radio btn  -->
             <div class="status">
                 <label>Status</label>
                 <div>

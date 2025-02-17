@@ -6,6 +6,7 @@ import UsersView from '@/views/UsersView.vue'
 import AddUser from '@/components/UsersPage/AddUser.vue'
 import AllUsers from '@/components/UsersPage/AllUsers.vue'
 import UserDetails from '@/components/UsersPage/UserDetails.vue'
+import UpdateUser from '@/components/UsersPage/UpdateUser.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,10 @@ const router = createRouter({
         {
           path: '/users/:id',
           component: UserDetails,
+        }, 
+        {
+          path: '/update-users/:id',
+          component: UpdateUser,
         }, 
         {
           path: '/all-users',

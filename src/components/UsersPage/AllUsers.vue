@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue';
 const url = 'http://localhost:5000/users'
 const loading = ref(true)
-const users = ref([]); 
+const users = ref([]);
+const question = 'Do you really want to delete this User?'
 
 
 //getting all users data from api
@@ -19,9 +20,24 @@ onMounted(async () => {
 })
 
 //delete a user 
-// const handleDelete = async(id)=>{
-//     console.log('clicked');
-// }
+const handleDelete = async (id) => {
+    if (confirm(question) === true) {
+        try {
+            const res = await fetch(`http://localhost:5000/users/${id}`, {
+                method: 'DELETE'
+            })
+            const data = await res.json();
+            if (data.deletedCount == 1) {
+                alert('User Deleted Successfully')
+                users.value = users.value.filter(user => user._id !== id)
+            }
+        } catch (error) {
+            console.log('error while delete', error);
+        }
+    } else {
+        return;
+    }
+}
 </script>
 
 <template>
@@ -39,15 +55,17 @@ onMounted(async () => {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(user, index) in users">
+                <tr v-for="(user, index) in users" :key="user._id">
                     <td>{{ index + 1 }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.gender }}</td>
                     <td>{{ user.status }}</td>
                     <td>
-                        <span>Edit</span>
-                        <span @click="handleDelete">Delete</span>
+                        <span>
+                            <RouterLink :to='`/update-users/${user._id}`'>Edit</RouterLink>
+                        </span>
+                        <button @click="handleDelete(`${user._id}`)">Delete</button>
                         <span>
                             <RouterLink :to='`/users/${user._id}`'>View Details</RouterLink>
                         </span>
@@ -60,7 +78,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-section{
+section {
     padding: 30px;
 }
 
@@ -91,5 +109,9 @@ span {
     border: 1px solid gray;
     padding: 5px;
     margin: 5px;
+}
+
+button {
+    cursor: pointer
 }
 </style>

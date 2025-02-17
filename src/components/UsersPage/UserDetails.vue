@@ -4,13 +4,14 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute()
 // console.log(route);
-const id = route.params.id;
-console.log(id);
+const id = route.params.id; //dynamic id from route
+// console.log(id);
 
 const url = `http://localhost:5000/users/${id}`
 const loading = ref(true)
 const singleUserDetails = ref({});
 
+//getting single user data
 onMounted(async () => {
     try {
         const res = await fetch(url)
