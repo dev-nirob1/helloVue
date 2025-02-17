@@ -1,3 +1,36 @@
+<script setup>
+import { ref } from 'vue';
+const name = ref('')
+const email = ref('')
+const status = ref('')
+const gender = ref('')
+
+const url = 'http://localhost:5000/users'
+
+const handleSubmit = async () => {
+    const userInfo = {
+        name: name.value,
+        email: email.value,
+        status: status.value,
+        gender: gender.value,
+    }
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+    })
+    const data = await response.json()
+    console.log(data.acknowledged);
+    if (data?.acknowledged) {
+        alert('Data Inserted Successfully')
+    }
+
+}
+</script>
+
 <template>
     <section>
         <RouterLink to="/all-users">All Users</RouterLink>
@@ -5,25 +38,25 @@
             <h2>New user</h2>
             <p>Use the below form to create a new account</p>
         </div>
-        <form>
+        <form @submit.prevent="handleSubmit">
             <div>
                 <label for="name">Name</label>
-                <input id="name" type="text" placeholder="Your Name">
+                <input v-model="name" id="name" type="text" placeholder="Your Name">
             </div>
             <div>
                 <label for="email">Email</label>
-                <input id="email" type="text" placeholder="Your Email">
+                <input v-model="email" id="email" type="text" placeholder="Your Email">
             </div>
 
             <div class="gender">
                 <label>Gender</label>
                 <div>
-                    <input type="radio" name="gender" id="male" value="male">
+                    <input v-model="gender" type="radio" name="gender" id="male" value="male">
                     <label for="male">Male</label>
                 </div>
 
                 <div>
-                    <input type="radio" name="gender" id="female" value="female">
+                    <input v-model="gender" type="radio" name="gender" id="female" value="female">
                     <label for="female">Female</label>
                 </div>
             </div>
@@ -31,12 +64,12 @@
             <div class="status">
                 <label>Status</label>
                 <div>
-                    <input type="radio" name="status" id="active" value="active">
+                    <input v-model="status" type="radio" name="status" id="active" value="active">
                     <label for="active">Active</label>
                 </div>
 
                 <div>
-                    <input type="radio" name="status" id="inactive" value="inactive">
+                    <input v-model="status" type="radio" name="status" id="inactive" value="inactive">
                     <label for="female">Inactive</label>
                 </div>
             </div>

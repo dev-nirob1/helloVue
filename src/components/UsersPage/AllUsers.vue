@@ -53,4 +53,9 @@ th, td {
 th {
     text-transform: uppercase;
 }
+span{
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 5px;
+}
 </style>
