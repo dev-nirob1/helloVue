@@ -7,7 +7,7 @@ const route = useRoute()
 const id = route.params.id; //dynamic id from route
 // console.log(id);
 
-const url = `http://localhost:5000/users/${id}`
+const url = `https://user-management-tan-three.vercel.app/users/${id}`
 const loading = ref(true)
 const singleUserDetails = ref({});
 

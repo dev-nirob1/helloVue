@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-const url = 'http://localhost:5000/users'
+const url = 'https://user-management-tan-three.vercel.app/users'
 const loading = ref(true)
 const users = ref([]);
 const question = 'Do you really want to delete this User?'
@@ -23,7 +23,7 @@ onMounted(async () => {
 const handleDelete = async (id) => {
     if (confirm(question) === true) {
         try {
-            const res = await fetch(`http://localhost:5000/users/${id}`, {
+            const res = await fetch(`https://user-management-tan-three.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
             const data = await res.json();
@@ -112,6 +112,7 @@ span {
 }
 
 button {
-    cursor: pointer
+    cursor: pointer;
+    padding: 8px;
 }
 </style>

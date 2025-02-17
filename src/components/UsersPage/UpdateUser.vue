@@ -15,7 +15,7 @@ const loading = ref(true)
 //getting single user data for default values;
 onMounted(async () => {
     try {
-        const res = await fetch(`http://localhost:5000/users/${id}`)
+        const res = await fetch(`https://user-management-tan-three.vercel.app/users/${id}`)
         const data = await res.json()
         userInfo.value = data;
         
@@ -44,7 +44,7 @@ const handleUpdateUser = async () => {
         gender: gender.value,
     }
 
-    const response = await fetch(`http://localhost:5000/users/${id}`, {
+    const response = await fetch(`https://user-management-tan-three.vercel.app/users/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const handleUpdateUser = async () => {
     })
     const data = await response.json()
     loading.value = false;
-    console.log(data);
+    // console.log(data);
     if (data?.acknowledged) {
         alert('Data Updated Successfully')
     } 
@@ -70,7 +70,7 @@ const handleUpdateUser = async () => {
         <!-- router link === anchor  -->
         <RouterLink to="/all-users">All Users</RouterLink>
         <div class="section-header">
-            <h2>Update info of: name</h2>
+            <h2>Update info of: {{name}}</h2>
         </div>
 
         <!-- form  -->

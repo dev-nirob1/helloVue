@@ -5,7 +5,7 @@ const email = ref('')
 const status = ref('')
 const gender = ref('')
 
-const url = 'http://localhost:5000/users'
+const url = 'https://user-management-tan-three.vercel.app/users'
 
 const handleSubmit = async () => {
     // users data to store
