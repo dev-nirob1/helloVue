@@ -1,0 +1,10 @@
+<template>
+    <h5 class="sub-title">
+      <slot></slot>
+    </h5>
+</template>
+<style scoped>
+/* .sub-title{
+    font-size: 1.3rem;
+} */
+</style>
