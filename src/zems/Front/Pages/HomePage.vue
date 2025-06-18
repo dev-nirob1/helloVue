@@ -1,3 +1,10 @@
+<script setup>
+import HeroSection from '../Components/Section/HeroSection.vue';
+import NewsLetter from '../Components/Section/NewsLetter.vue';
+
+</script>
+
 <template>
-    this is home page
+    <HeroSection/>
+    <NewsLetter/>
 </template>
