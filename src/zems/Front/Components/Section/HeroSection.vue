@@ -34,6 +34,7 @@ import { RouterLink } from 'vue-router';
 .hero-content p {
     font-size: 1.25rem;
 }
+
 .hero-content .btn {
     font-size: 1.25rem;
     padding: .75rem 2.5rem;
