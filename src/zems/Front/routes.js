@@ -1,5 +1,6 @@
 import MainLayout from "./FrontLayout/MainLayout.vue";
 import AboutPage from "./Pages/AboutPage.vue";
+import BlogsDetails from "./Pages/BlogsDetails.vue";
 import BlogsPage from "./Pages/BlogsPage.vue";
 import ContactPage from "./Pages/ContactPage.vue";
 import HomePage from "./Pages/HomePage.vue";
@@ -18,6 +19,11 @@ export default [
           path: "/blogs",
           name: "blogs",
           component: BlogsPage,
+        },
+        {
+          path: "/blogs-details/:slug",
+          name: "blogs-details",
+          component: BlogsDetails,
         },
         {
           path: "/about",
