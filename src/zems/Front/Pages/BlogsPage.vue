@@ -6,13 +6,13 @@ import { ref, watch, onMounted, watchEffect } from 'vue'
 import axios from 'axios'
 
 const blogs = ref([])
-const per_page = 3
+const per_page = 6
 
 const route = useRoute()
 const router = useRouter()
 
 const currentPage = ref(parseInt(1))
-const totalPages = ref(10)
+const totalPages = ref(7)
 
 const fetchBlogs = async () => {
   try {
@@ -58,7 +58,7 @@ watchEffect(() => {
         <li v-for="page in totalPages" :key="page">
           <RouterLink
             :to="`/blogs?page=${page}`"
-            :class="{ active: page === currentPage }"
+            :class="{ active: page == currentPage }"
           >
             {{ page }}
           </RouterLink>

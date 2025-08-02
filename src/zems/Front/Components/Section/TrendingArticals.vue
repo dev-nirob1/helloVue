@@ -8,7 +8,7 @@ const trendingData = ref([])
 
 const getTrendingArticals = async () => {
     try {
-        const res = await axios.get('https://dev.to/api/articles?top=7&per_page=5');
+        const res = await axios.get('https://dev.to/api/articles?top=7&per_page=6');
         console.log(res);
         trendingData.value = res.data
     } catch (error) {
