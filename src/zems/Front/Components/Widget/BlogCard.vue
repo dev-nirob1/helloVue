@@ -28,7 +28,7 @@ defineProps({
   border-radius: .5rem;
   padding: 1rem;
   box-shadow: var(--box-shadow);
-  border: 1px solid;
+  border: 1px solid var(--border-color);
 }
 .blog-card .btn {
   padding: .5rem;

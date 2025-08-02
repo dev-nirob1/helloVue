@@ -91,6 +91,7 @@ onMounted(fetchBlogDetails)
 
 .blog-details .content .cover-image {
     max-height: 380px;
+    width: 100%;
     border-radius: 1rem 1rem 0 0;
 }
 
@@ -155,7 +156,7 @@ onMounted(fetchBlogDetails)
     border-radius: 1rem;
     height: fit-content;
     position: sticky;
-    top: 0;
+    top: 1rem;
 }
 
 .blog-details .profile img {
