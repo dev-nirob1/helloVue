@@ -78,15 +78,13 @@ onMounted(fetchBlogDetails)
     </section>
 </template>
 
-<style scoped>
+<style >
 .blog-details {
     padding: 3.75rem 0;
 }
 
 /* content css  */
 .blog-details .content {
-    box-sizing: border-box;
-    max-width: 700px;
     background-color: var(--white-color);
     border-radius: 1rem;
 }
@@ -95,6 +93,7 @@ onMounted(fetchBlogDetails)
     max-height: 380px;
     border-radius: 1rem 1rem 0 0;
 }
+
 .blog-details .content .tags {
     list-style: none;
     padding: 0;
@@ -103,42 +102,48 @@ onMounted(fetchBlogDetails)
     flex-wrap: wrap;
     gap: .5rem;
 }
+
 .blog-details .content .blog-data {
-  max-width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  box-sizing: border-box;
+    max-width: 600px;
 }
 
-.blog-details .content .blog-data img,
+.blog-details .content .blog-data img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+    display: block;
+    margin: 2rem 0;
+}
+
 .blog-details .content .blog-data video,
 .blog-details .content .blog-data iframe {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
 }
 
 .blog-details .content .blog-data pre,
 .blog-details .content .blog-data code {
-  max-width: 100%;
-  overflow-x: auto;
-  display: block;
-  padding: 1rem;
-  border-radius: 6px;
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+    padding: 1rem;
+    border-radius: 6px;
 }
 
 .blog-details .content .blog-data table {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
 }
 
 
-.blog-details .content .tags .btn{
+.blog-details .content .tags .btn {
     border: 1px solid transparent;
 }
-.blog-details .content .tags .btn:hover{
+
+.blog-details .content .tags .btn:hover {
     border: 1px solid var(--border-color);
 }
 
@@ -148,6 +153,9 @@ onMounted(fetchBlogDetails)
     border: 1px solid var(--border-color);
     padding: 1rem;
     border-radius: 1rem;
+    height: fit-content;
+    position: sticky;
+    top: 0;
 }
 
 .blog-details .profile img {
