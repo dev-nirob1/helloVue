@@ -1,131 +1,89 @@
+<script setup>
+import BaseButton from '@/components/Elements/BaseButton.vue';
+import BaseImage from '@/components/Elements/BaseImage.vue';
+import BaseParagraph from '@/components/Elements/BaseParagraph.vue';
+import SubTitle from '@/components/Elements/SubTitle.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+
+const blogDetails = ref({})
+
+const route = useRoute()
+console.log(route.params.username);
+const fetchBlogDetails = async () => {
+    try {
+        const res = await axios.get(`https://dev.to/api/articles/${route?.params?.username}/${route?.params?.slug}`)
+        blogDetails.value = res.data
+    } catch (error) {
+        console.log('blog details error', error);
+    }
+}
+onMounted(fetchBlogDetails)
+
+
+</script>
+
 <template>
-  <section class="blog-wrapper">
-    <!-- Cover Image -->
-    <img class="cover-img" src="https://media2.dev.to/..." alt="Cover Image" />
+    <section class="blog-details">
+        <div class="container">
+            <div class="large-3 gap-1">
+                <div class="large-span-2 content">
 
-    <!-- Author Info -->
-    <div class="author-info">
-      <img class="author-avatar" src="https://media2.dev.to/..." alt="Author" />
-      <div>
-        <h2 class="author-name">Ali Farhat</h2>
-        <p class="publish-date">Posted on Aug 1</p>
-      </div>
-    </div>
-
-    <!-- Blog Title -->
-    <h1 class="blog-title">🩸ChatGPT Privacy Leak: Google Is Indexing Private Conversations</h1>
-
-    <!-- Tags -->
-    <div class="tag-list">
-      <span class="tag">#ai</span>
-      <span class="tag">#privacy</span>
-      <span class="tag">#gdpr</span>
-      <span class="tag">#chatgpt</span>
-    </div>
-
-    <!-- Blog Description / Content -->
-    <div class="blog-content">
-      <p>
-        Google has indexed thousands of ChatGPT conversations — exposing sensitive prompts, private data, and more...
-      </p>
-    </div>
-
-    <!-- Reactions + Comments -->
-    <div class="reaction-section">
-      <span>👍 74 reactions</span>
-      <span>💬 30 comments</span>
-      <span>⏱️ 4 min read</span>
-    </div>
-  </section>
+                </div>
+                <div class="author">
+                    <div class="profile">
+                        <BaseImage :image="blogDetails?.user?.profile_image" alt="profile image" />
+                        <SubTitle>{{ blogDetails?.user?.name }}</SubTitle>
+                    </div>
+                    <BaseButton class="bg-success text-white width-full">Follow</BaseButton>
+                    <BaseParagraph>Software engineer, home lab server enthusiast, passionate about online privacy and
+                        dark themes 😎
+                    </BaseParagraph>
+                    <div class="author-location">
+                        <SubTitle>Location</SubTitle>
+                        <BaseParagraph>United States</BaseParagraph>
+                    </div>
+                    <div class="author-joined">
+                        <SubTitle>Joined</SubTitle>
+                        <BaseParagraph>Jan 16, 2021</BaseParagraph>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <style scoped>
-.blog-wrapper {
-  max-width: 768px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: system-ui, sans-serif;
+.blog-details {
+    padding: 3.75rem 0;
 }
 
-.cover-img {
-  width: 100%;
-  border-radius: 8px;
-  max-height: 400px;
-  object-fit: cover;
-  margin-bottom: 20px;
+.blog-details .content {
+    background-color: var(--white-color);
+    border-radius: 1rem;
 }
 
-.author-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+.blog-details .author {
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
-.author-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+.blog-details .profile img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
 }
 
-.author-name {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0;
+.blog-details .profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
-
-.publish-date {
-  font-size: 0.875rem;
-  color: gray;
-  margin: 0;
-}
-
-.blog-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.tag {
-  background-color: #f3f4f6;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
-}
-
-.blog-content p {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: #333;
-}
-
-.reaction-section {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-  .blog-wrapper {
-    padding: 40px;
-  }
-
-  .blog-title {
-    font-size: 2.5rem;
-  }
-
-  .blog-content p {
-    font-size: 1.2rem;
-  }
+.blog-details .author .author-location p,
+.blog-details .author .author-joined p{
+    margin-top: .25rem;
 }
 </style>

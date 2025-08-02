@@ -21,7 +21,7 @@ export default [
           component: BlogsPage,
         },
         {
-          path: "/blogs-details/:slug",
+          path: "/blogs-details/:username/:slug",
           name: "blogs-details",
           component: BlogsDetails,
         },

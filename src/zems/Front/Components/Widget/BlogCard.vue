@@ -18,7 +18,7 @@ defineProps({
     <div class="card-body pt-1">
       <SubTitle>{{ data.title.substring(0, 28) }}...</SubTitle>
       <BaseParagraph>{{ data.description.substring(0, 60) }}...</BaseParagraph><router-link
-        class="btn bg-secondary text-white width-full" :to="`blogs-details/${data.slug}`">See Details</router-link>
+        class="btn bg-secondary text-white width-full" :to="`blogs-details/${data.user.username}/${data.slug}`">See Details</router-link>
     </div>
   </div>
 </template>
