@@ -7,19 +7,19 @@ import TestimonialsCard from '../Widget/TestimonialsCard.vue';
 
 <template>
     <div class="testimonials bg-lighten">
-        <div class="container medium-2 align-center gap-2">
-            <div>
-                <BaseTitle>Developer Thoughts</BaseTitle>
-                <BaseParagraph>
-                    See what fellow developers think about the platform.
-                </BaseParagraph>
-            </div>
-            <div class="testimonials-content">
-                <TestimonialsCard/>
-                <TestimonialsCard/>
-                <TestimonialsCard/>
-            </div>
+       <div class="container">
+         <div>
+            <BaseTitle>Developer Thoughts</BaseTitle>
+            <BaseParagraph>
+                See what fellow developers think about the platform.
+            </BaseParagraph>
         </div>
+        <div class="medium-2 align-center gap-2">
+                <TestimonialsCard/>
+                <TestimonialsCard/>
+                <TestimonialsCard/>
+        </div>
+       </div>
     </div>
 </template>
 <style scoped>
@@ -27,14 +27,4 @@ import TestimonialsCard from '../Widget/TestimonialsCard.vue';
     padding: 3.75rem 0;
 }
 
-.testimonials-content {
-    display: flex;
-    overflow: auto;
-    gap: 2rem;
-    padding: 1rem;
-    scroll-behavior: smooth;
-}
-.testimonials-content::-webkit-scrollbar{
-    display: none;
-}
 </style>

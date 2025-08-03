@@ -31,7 +31,9 @@ onMounted(fetchBlogDetails)
         <div class="container">
             <div class="large-3 gap-2">
                 <div class="large-span-2 content">
-                    <BaseImage class="cover-image" :image="blogDetails?.cover_image" alt="cover image" />
+                    <div class="cover-image">
+                        <BaseImage :image="blogDetails?.cover_image" alt="cover image" />
+                    </div>
                     <div class="p-2">
                         <div class="profile">
                             <BaseImage :image="blogDetails?.user?.profile_image" alt="profile image" />
@@ -65,11 +67,11 @@ onMounted(fetchBlogDetails)
                         dark themes 😎
                     </BaseParagraph>
                     <div class="author-location">
-                        <SubTitle>Location</SubTitle>
+                        <h6>Location</h6>
                         <BaseParagraph>United States</BaseParagraph>
                     </div>
                     <div class="author-joined">
-                        <SubTitle>Joined</SubTitle>
+                        <h6>Joined</h6>
                         <BaseParagraph>Jan 16, 2021</BaseParagraph>
                     </div>
                 </div>
@@ -92,7 +94,12 @@ onMounted(fetchBlogDetails)
 .blog-details .content .cover-image {
     max-height: 380px;
     width: 100%;
+    box-sizing: border-box;
+}
+.blog-details .content .cover-image img{
     border-radius: 1rem 1rem 0 0;
+    height: 100%;
+    width: 100%;
 }
 
 .blog-details .content .tags {
