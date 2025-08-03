@@ -6,7 +6,7 @@ import TestimonialsCard from '../Widget/TestimonialsCard.vue';
 </script>
 
 <template>
-    <div class="testimonials bg-lighten">
+    <div class="testimonials">
         <div class="container">
             <div class="mb-3">
                 <BaseTitle>Developer Thoughts</BaseTitle>

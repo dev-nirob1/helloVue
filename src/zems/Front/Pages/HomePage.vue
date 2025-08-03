@@ -9,6 +9,6 @@ import TrendingArticals from '../Components/Section/TrendingArticals.vue';
 <template>
     <HeroSection/>
     <TrendingArticals/>
-    <Testimonials/>
     <NewsLetter/>
+    <Testimonials/>
 </template>

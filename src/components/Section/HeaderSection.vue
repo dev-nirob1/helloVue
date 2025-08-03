@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <header class="navbar bg-primary">
+    <header class="navbar bg-secondary">
         <nav class="flex justify-between align-center container">
             <!-- Logo -->
             <RouterLink to="/" class="logo">
@@ -53,11 +53,6 @@ onMounted(() => {
 .navbar {
     color: var(--white-color);
     padding: 0.75rem 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
     transition: 0.3s ease;
 }
 
@@ -92,7 +87,7 @@ onMounted(() => {
 }
 
 .navbar ul li a {
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.2s ease-in-out;
     position: relative;
     padding: 0.5rem 0;
