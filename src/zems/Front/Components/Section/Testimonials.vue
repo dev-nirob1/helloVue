@@ -7,24 +7,21 @@ import TestimonialsCard from '../Widget/TestimonialsCard.vue';
 
 <template>
     <div class="testimonials bg-lighten">
-       <div class="container">
-         <div>
-            <BaseTitle>Developer Thoughts</BaseTitle>
-            <BaseParagraph>
-                See what fellow developers think about the platform.
-            </BaseParagraph>
+        <div class="container">
+            <div class="mb-3">
+                <BaseTitle>Developer Thoughts</BaseTitle>
+                <BaseParagraph>
+                    See what fellow developers think about the platform.
+                </BaseParagraph>
+            </div>
+            <div class="medium-2 align-center gap-2">
+                <TestimonialsCard v-for="(card, i) in 2" :key="i" />
+            </div>
         </div>
-        <div class="medium-2 align-center gap-2">
-                <TestimonialsCard/>
-                <TestimonialsCard/>
-                <TestimonialsCard/>
-        </div>
-       </div>
     </div>
 </template>
 <style scoped>
 .testimonials {
     padding: 3.75rem 0;
 }
-
 </style>
